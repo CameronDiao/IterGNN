@@ -11,10 +11,12 @@ import torch, os, time, shutil, copy
 from torch_geometric.data import DataLoader, DataListLoader
 from torch_geometric.nn import DataParallel
 
+def count_parameters(model):
+    return sum(p.numel() for p in model.parameters() if p.requires_grad)
+
 def test_model(dataset_param, model_param, test_dataset_param,
                batch_size=32, layer_num=None,
                metric_name_list=['relative_loss', 'mse_loss', 'accuracy',
-                                 'post_relative_loss', 'post_mse_loss', 'post_accuracy',
                                  'layer_num',]):
     print(dataset_param, model_param, test_dataset_param)
 
@@ -67,8 +69,9 @@ def test_model(dataset_param, model_param, test_dataset_param,
                                                             metric_name_list=metric_name_list)
 
                         for metric_name, metric_list in test_metric_list.items():
+                            print(metric_name, np.average(metric_list)) 
                             record = np.array([y_list, metric_list])
-                            np.savetxt(osp.join(cur_performance_dir, ('raw_%s'%metric_name)+('' if layer_num is None else '_'+str(layer_num))+'.csv'), record)
+                            #np.savetxt(osp.join(cur_performance_dir, ('raw_%s'%metric_name)+('' if layer_num is None else '_'+str(layer_num))+'.csv'), record)
 
                         del test_dataset, test_data_loader
 

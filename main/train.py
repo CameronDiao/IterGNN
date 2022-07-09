@@ -12,6 +12,8 @@ import torch.nn.functional as F
 from torch.utils.tensorboard import SummaryWriter
 from torch_geometric.data import DataLoader, DataListLoader
 
+def count_parameters(model):                                                                                                                                                                                           return sum(p.numel() for p in model.parameters() if p.requires_grad)  
+
 def running_test(prefix, net, test_data_loader, device,
                  running_metric_name_list, test_loss_hist,
                  epoch, step, global_step,
@@ -76,6 +78,7 @@ def train_model(dataset_param, model_param, general_param, loss_func=F.mse_loss)
     # build network
     net = param2model(train_dataset, model_param)
     net = net.to(device)
+    logger.info('number of model parameters: %.2f'%(count_parameters(net)))
     logger.info(str(net))
 
     # optimizer related

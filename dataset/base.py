@@ -27,13 +27,17 @@ class _BaseDataset(InMemoryDataset):
         self.classification_flag = False
         super(InMemoryDataset, self).__init__(_fake_dataset_root, transform=transform,
                                            pre_transform=None, pre_filter=pre_filter)
-        # self.data, self.slices = torch.load(self.processed_paths[0])
+        self.data, self.slices = torch.load(self.processed_paths[0])
     @property
     def raw_file_names(self):
         return ['raw_files.pt']
     @property
     def processed_file_names(self):
-        return ['data.pt']
+        if self.train_flag:
+            return ['train_data.pt']
+        else:
+            return ['test_data.pt']
+        #return ['data.pt']
     def download(self):
         pass
     def generate_data_list(self):
@@ -47,7 +51,7 @@ class _BaseDataset(InMemoryDataset):
             data_list = [data for data in data_list if self.pre_filter(data)]
         self.data, self.slices = self.collate(data_list)
         self.data, self.slices = self.data.to(self.device), {k:v.to(self.device) for k,v in self.slices.items()}
-        # torch.save((data, slices), self.processed_paths[0])
+        #torch.save((self.data, self.slices), self.processed_paths[0])
     def _process(self):
         if files_exist(self.processed_paths):
             for _path in self.processed_paths:

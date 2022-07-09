@@ -50,7 +50,6 @@ def arg2model_param(arg):
 
 def get_metric_names(dataset_name):
     metric_name_list = ['relative_loss', 'mse_loss', 'accuracy', 'prediction',
-                        'post_relative_loss', 'post_mse_loss', 'post_accuracy', 'post_prediction',
                         'layer_num',]
     return metric_name_list
 

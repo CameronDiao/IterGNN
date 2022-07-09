@@ -12,7 +12,7 @@ def main(arg, min_edge_distance=0.5, max_edge_distance=1.5):
     test_dataset_param = arg2dataset_param(arg[2])
     layer_num = None if len(arg) <= 3 else int(arg[3])
 
-    dataset_param.size = 100000
+    dataset_param.size = 10000
     dataset_param.min_num_node = 4
     dataset_param.num_num_node = 30
     test_dataset_param.size = 1000
@@ -32,8 +32,8 @@ if __name__ == '__main__':
     if len(sys.argv) > 1:
         arg = sys.argv[1:]
     main(copy.deepcopy(arg), min_edge_distance=0.5, max_edge_distance=1.5)
-    main(copy.deepcopy(arg), min_edge_distance=1, max_edge_distance=3)
-    main(copy.deepcopy(arg), min_edge_distance=2, max_edge_distance=6)
-    main(copy.deepcopy(arg), min_edge_distance=4, max_edge_distance=12)
-    main(copy.deepcopy(arg), min_edge_distance=8, max_edge_distance=24)
-    main(copy.deepcopy(arg), min_edge_distance=16, max_edge_distance=48)
+    #main(copy.deepcopy(arg), min_edge_distance=1, max_edge_distance=3)
+    #main(copy.deepcopy(arg), min_edge_distance=2, max_edge_distance=6)
+    #main(copy.deepcopy(arg), min_edge_distance=4, max_edge_distance=12)
+    #main(copy.deepcopy(arg), min_edge_distance=8, max_edge_distance=24)
+    #main(copy.deepcopy(arg), min_edge_distance=16, max_edge_distance=48)

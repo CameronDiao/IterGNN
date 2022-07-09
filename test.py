@@ -12,7 +12,7 @@ def main(arg):
     test_dataset_param = arg2dataset_param(arg[2])
     layer_num = None if len(arg) <= 3 else int(arg[3])
 
-    dataset_param.size = 100000
+    dataset_param.size = 10000
     dataset_param.min_num_node = 4
     dataset_param.num_num_node = 30
     test_dataset_param.size = 1000

@@ -20,19 +20,23 @@ class _Aggregation(nn.Module):
 
 class MaxAggregation(_Aggregation):
     def forward(self, x, index, size, *args, **kwargs):
-        return global_max_pool(x, index, size=size)
+        #return global_max_pool(x, index, size=size)
+        return global_max_pool(x, index)
 
 class MinAggregation(_Aggregation):
     def forward(self, x, index, size, *args, **kwargs):
-        return -global_max_pool(-x, index, size=size)
+        #return -global_max_pool(-x, index, size=size)
+        return -global_max_poool(-x, index)
 
 class MeanAggregation(_Aggregation):
     def forward(self,x, index, size, *args, **kwargs):
-        return global_mean_pool(x, index, size=size)
+        #return global_mean_pool(x, index, size=size)
+        return global_mean_pool(x, index)
 
 class SumAggregation(_Aggregation):
     def forward(self,x, index, size, *args, **kwargs):
-        return global_add_pool(x, index, size=size)
+        #return global_add_pool(x, index, size=size)
+        return global_add_pool(x, index)
 
 class IdentityAggregation(_Aggregation):
     def forward(self,x, index, size, *args, **kwargs):

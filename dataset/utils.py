@@ -110,7 +110,8 @@ def gen_edge_index(index_generator='random', **kwargs):
 
 import multiprocessing as mp
 from torch_geometric.data import Data
-from torch_geometric.utils import scatter_, to_networkx
+from torch_geometric.utils import to_networkx
+from torch_scatter import scatter
 import networkx as nx
 import matplotlib.pyplot as plt
 plt.ion()
